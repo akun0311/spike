@@ -87,11 +87,13 @@ struct state_t
   bool prev_v;
   misa_csr_t_p misa;
   mstatus_csr_t_p mstatus;
+  
   csr_t_p mstatush;
   csr_t_p mepc;
   csr_t_p mtval;
   csr_t_p mtvec;
   csr_t_p mcause;
+
   wide_counter_csr_t_p minstret;
   wide_counter_csr_t_p mcycle;
   mie_csr_t_p mie;

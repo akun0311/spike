@@ -334,7 +334,6 @@ typedef std::shared_ptr<sstatus_csr_t> sstatus_csr_t_p;
 class misa_csr_t final: public basic_csr_t {
  public:
   misa_csr_t(processor_t* const proc, const reg_t addr, const reg_t max_isa);
-
   bool extension_enabled(unsigned char ext) const noexcept {
     assert(ext >= 'A' && ext <= 'Z');
     return (read() >> (ext - 'A')) & 1;

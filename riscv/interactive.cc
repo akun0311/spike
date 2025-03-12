@@ -834,7 +834,6 @@ void sim_t::interactive_mtimecmp(const std::string& cmd, const std::vector<std::
 {
   if (args.size() != 1)
     throw trap_interactive();
-
   processor_t *p = get_core(args[0]);
   std::ostream out(sout_.rdbuf());
   out << std::hex << std::setfill('0') << "0x" << std::setw(16)

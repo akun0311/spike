@@ -514,13 +514,14 @@ int main(int argc, char** argv)
   }
 
   sim_t s(&cfg, halted,
-      mems, plugin_device_factories, htif_args, dm_config, log_path, dtb_enabled, dtb_file,
+      mems, 
+      plugin_device_factories, 
+      htif_args, dm_config, log_path, dtb_enabled, dtb_file,
       socket,
       cmd_file,
       instructions);
   std::unique_ptr<remote_bitbang_t> remote_bitbang((remote_bitbang_t *) NULL);
-  std::unique_ptr<jtag_dtm_t> jtag_dtm(
-      new jtag_dtm_t(&s.debug_module, dmi_rti));
+  std::unique_ptr<jtag_dtm_t> jtag_dtm( new jtag_dtm_t(&s.debug_module, dmi_rti));
   if (use_rbb) {
     remote_bitbang.reset(new remote_bitbang_t(rbb_port, &(*jtag_dtm)));
     s.set_remote_bitbang(&(*remote_bitbang));
@@ -547,11 +548,10 @@ int main(int argc, char** argv)
   s.set_debug(debug);
   s.configure_log(log, log_commits);
   s.set_histogram(histogram);
-
+  printf("right\n");
   auto return_code = s.run();
 
   for (auto& mem : mems)
     delete mem.second;
-
   return return_code;
 }
